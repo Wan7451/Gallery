@@ -13,7 +13,7 @@ import java.util.List;
  * Created by wanggang on 2017/3/17.
  */
 
-public abstract class GalleryAdapter<T> extends RecyclerView.Adapter<GalleryAdapter.Holder> {
+public abstract class GalleryAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
     private final LayoutInflater inflater;
     private Context context;
     private List<T> list;
@@ -31,12 +31,12 @@ public abstract class GalleryAdapter<T> extends RecyclerView.Adapter<GalleryAdap
     }
 
     @Override
-    public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(getConvertLayout(), parent, false);
         ViewGroup.LayoutParams lp = view.getLayoutParams();
         lp.width = width;
         view.setLayoutParams(lp);
-        return new Holder(view);
+        return ViewHolder.createViewHolder(view);
     }
 
     public void setList(List<T> list) {
@@ -60,10 +60,5 @@ public abstract class GalleryAdapter<T> extends RecyclerView.Adapter<GalleryAdap
         return list.size();
     }
 
-    public static class Holder extends RecyclerView.ViewHolder {
-        public Holder(View itemView) {
-            super(itemView);
-        }
-    }
 
 }
